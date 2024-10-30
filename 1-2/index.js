@@ -42,8 +42,7 @@ let clientes = [
 let jproductos = JSON.stringify(productos);
 let jventas = JSON.stringify(ventas);
 let jclientes = JSON.stringify(clientes);
-// console.log(jproductos);
-// console.log(productos);
-// //console.log(jventas);
-// console.log(jclientes);
+console.log(jproductos);
+console.log(jventas);
+console.log(jclientes);
 
