@@ -1,22 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport"
-content="width=device-width,
-initial-scale=1.0">
-<title>Document</title>
-</head>
-<body>
- <div class="contenedor">
- <div class="buscador">
- <input class="input-a-buscar"
-type="text" name="buscador"> 
- <button id="boton"
-type="button">Buscar</button>
- </div>
- <p class="resultado"></p>
- </div> 
- <script src="script.js"></script>
-</body>
-</html>
+let producto = {
+    "id": 1,
+    "nombre": "Smartphone X",
+    "precio": 599.99,
+    "categoria": "Electrónica",
+    "especificaciones": {
+      "marca": "TechBrand",
+      "modelo": "X-2000",
+      "almacenamiento": "128GB"
+    }
+   };
+console.log(producto);
