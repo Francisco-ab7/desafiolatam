@@ -70,3 +70,4 @@ let invorden = (ventOrdenas.reverse());
 console.log(invorden);
 
 
+

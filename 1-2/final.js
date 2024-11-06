@@ -67,6 +67,7 @@ let ventxprod = productos.map(function(prod) {
 let ventOrdenas = ventxprod.sort((a, b) => a.vendidos - b.vendidos);
 let invorden = (ventOrdenas.reverse());
 console.log(invorden);
+// EL EJERCIO NO LO PUDE COMPLETAR YA QUE AL REALIZAR LOS METODOS ME APARECEN UNOS COMO "UNDEFINED" LO QUE NO ME PERMITE SOLO MOSTRAR LOS 3 PRIMEROS, PERO SI ESTAN ORDENADOS DESCENDENTEMENTE
 
 //------------------------ ITEM 3 -----------------------------------
 
