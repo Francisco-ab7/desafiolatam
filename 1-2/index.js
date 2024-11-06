@@ -18,7 +18,7 @@ let ventas = [
     {"idventa":2,"idproducto":2,"cantidad":2, "fecha":"02-01-2024","idcliente":7},
     {"idventa":3,"idproducto":1,"cantidad":16, "fecha":"03-01-2024","idcliente":5},
     {"idventa":4,"idproducto":3,"cantidad":32, "fecha":"03-01-2024","idcliente":7},
-    {"idventa":5,"idproducto":1,"cantidad":4, "fecha":"03-01-2024","idcliente":3},
+    {"idventa":5,"idproducto":1,"cantidad":4, "fecha":"03-01-2024","idcliente":10},
     {"idventa":6,"idproducto":4,"cantidad":2, "fecha":"04-01-2024","idcliente":1},
     {"idventa":7,"idproducto":5,"cantidad":1, "fecha":"05-01-2024","idcliente":9},
     {"idventa":8,"idproducto":5,"cantidad":1, "fecha":"05-01-2024","idcliente":2},
@@ -38,11 +38,4 @@ let clientes = [
     {"idcliente":9,"nombreCliente":"veronica", "email":"veronica@gmail.com"},
     {"idcliente":10,"nombreCliente":"cecilia", "email":"cecilia@gmail.com"}
 ]
-
-let jproductos = JSON.stringify(productos);
-let jventas = JSON.stringify(ventas);
-let jclientes = JSON.stringify(clientes);
-console.log(jproductos);
-console.log(jventas);
-console.log(jclientes);
-
+console.log(ventas);
