@@ -51,4 +51,4 @@ function obtenerTresProductosMasVendidos(ventas, productos) {
 
 // Llamar a la función y ver el resultado
 let tresProductosMasVendidos = obtenerTresProductosMasVendidos(ventas, productos);
-console.log(tresProductosMasVendidos);
+console.log(tresProductosMasVendidos.slice(0,3));

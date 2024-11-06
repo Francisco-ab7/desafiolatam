@@ -22,25 +22,51 @@ let productos = [
     {"id":"9", "nombre":"shampoo", "precio":200000, "categoria":"Limpieza","stock":20},
     {"id":"10", "nombre":"leche", "precio":110000, "categoria":"Lacteos","stock":100}
 ];
+//--------------reduce para contar cantventa por producto -----------
+let reVentas = ventas.reduce((acumulador, venta) => {
+    
+    if (acumulador[venta.idproducto]) {
+        acumulador[venta.idproducto] += venta.cantidad;
+    } else {
+        acumulador[venta.idproducto] = venta.cantidad;
+    }
+    return acumulador;
+}, {});
+//console.log(reVentas);
+// { '1': 46, '2': 2, '3': 32, '4': 2, '5': 2, '8': 3, '10': 25 }
 
-// let contarVenta = {};
-// let contVenta = ventas.forEach((venta) => {
-//     if(!venta.idproducto){
-//         contarVenta[venta.productos] = 0;
-//     }
-//     contarVenta[venta.productos] += venta.cantidad;
+//let transformarobj = Object.entries(reVentas);
+//console.log(transformarobj);
+
+//----------------- map-- se crea un objeto une producto y cant venta------
+
+// let ventxprod = productos.map(function(prod) {
+//     if(productos.id === reVentas[0]){
+//         return {
+//             ...prod, vendidos:reVentas[prod.id]
+//         }}
+//     else if (reVentas[0] === 'undefined' || 'null') {
+//         return {
+//             ...prod, vendidos:0
+//         }}
 // })
-// console.log(contarVenta);
 
 
-let topventas = ventas.reduce((cant, idpro)=> {
-    if(!cant[idpro.idproducto]) {
-        cant[idpro.idproducto] = [];
-   }
-   //cant[idpro.idproducto].push(idpro.cantidad); // muestra un array con las cantidades por veces
+//---------------------segun vez
+let ventxprod = productos.map(function(prod) {
+    if (reVentas[prod.id] || 0){
+    return {
+        ...prod, vendidos:reVentas[prod.id]
+    }}
+})
 
-   cant[idpro.idproducto] = cant[idpro.idproducto] + idpro.cantidad; // muestra la suma de las cantidades
-   return cant;
+//console.log(ventxprod);
 
-},{})
-console.log({topventas})
+//------------------ordernar ------------------------
+largo =  ventxprod.length;
+console.log(largo);
+let ventOrdenas = ventxprod.sort((a, b) => a.vendidos - b.vendidos);
+let invorden = (ventOrdenas.reverse());
+console.log(invorden);
+
+
