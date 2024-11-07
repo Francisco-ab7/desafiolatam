@@ -23,7 +23,6 @@ let ventas = [
     {"idventa":9,"idproducto":10,"cantidad":6, "fecha":"06-01-2024","idcliente":8},
     {"idventa":10,"idproducto":8,"cantidad":3, "fecha":"06-01-2024","idcliente":2}
 ]
-
 let clientes = [
     {"idcliente":1,"nombreCliente":"Juan", "email":"juan@gmail.com"},
     {"idcliente":2,"nombreCliente":"Pedro", "email":"Pedro@gmail.com"},
@@ -36,35 +35,23 @@ let clientes = [
     {"idcliente":9,"nombreCliente":"veronica", "email":"veronica@gmail.com"},
     {"idcliente":10,"nombreCliente":"cecilia", "email":"cecilia@gmail.com"}
 ]
-//-------------------crea objeto de cant. venta x id producto ------------
-let vtaxprod = {};
-ventas.forEach(venta => {
-    if(!vtaxprod[venta.idproducto]){
-        vtaxprod[venta.idproducto] = 0;
-    }
-        vtaxprod[venta.idproducto] += venta.cantidad;
-})
-//console.log(vtaxprod);
-//------------------ nuevo objeto con producto completo + cant. vendida
-
-let ventaProducto = productos.map(prod => {
-    return {
-        ...prod,
-        cantVent: vtaxprod[prod.id] || 0
-    };
-
-    }
-    )
-console.log(ventaProducto);
-
-//---------------------------reduce---monto por categoria-------------------
-let vtaxcat = ventaProducto.reduce((acumulador, venta) => {
+// let vtaxprod = {};
+// ventas.forEach(venta => {
+//     if(!vtaxprod[venta.idproducto]){
+//         vtaxprod[venta.idproducto] = 0;
+//     }
+//         vtaxprod[venta.idproducto] += venta.cantidad
     
-    if (acumulador[venta.categoria]) {
-        acumulador[venta.categoria] += venta.cantVent;
-    } else {
-        acumulador[venta.idproducto] = venta.cantVent;
+// })
+// console.log(vtaxprod);
+
+//--------------------------------------------------------
+
+let ventval = ventas.map((venvalor)=> { 
+    if(!venvalor[idproducto]){
+        return {...ventas, catv:0}
+    }         
     }
-    return acumulador;
-}, {});
-console.log(vtaxcat);
+ )
+
+console.log(ventval);
