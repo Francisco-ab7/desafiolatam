@@ -1,3 +1,4 @@
+//-----------------------ITEM 1-------------------------
 let productos = [
     {"id":1, "nombre":"pan", "precio":100, "categoria":"abarrotes","stock":1000},
     {"id":2, "nombre":"mantequilla", "precio":2000, "categoria":"abarrotes","stock":200},
@@ -20,7 +21,7 @@ let ventas = [
     {"idventa":6,"idproducto":4,"cantidad":2, "fecha":"04-01-2024","idcliente":1},
     {"idventa":7,"idproducto":5,"cantidad":1, "fecha":"05-01-2024","idcliente":9},
     {"idventa":8,"idproducto":5,"cantidad":1, "fecha":"05-01-2024","idcliente":2},
-    {"idventa":9,"idproducto":10,"cantidad":10, "fecha":"06-01-2024","idcliente":8},
+    {"idventa":9,"idproducto":10,"cantidad":6, "fecha":"06-01-2024","idcliente":8},
     {"idventa":10,"idproducto":8,"cantidad":3, "fecha":"06-01-2024","idcliente":2}
 ]
 
@@ -36,35 +37,35 @@ let clientes = [
     {"idcliente":9,"nombreCliente":"veronica", "email":"veronica@gmail.com"},
     {"idcliente":10,"nombreCliente":"cecilia", "email":"cecilia@gmail.com"}
 ]
-//-------------------crea objeto de cant. venta x id producto ------------
-let vtaxprod = {};
-ventas.forEach(venta => {
-    if(!vtaxprod[venta.idproducto]){
-        vtaxprod[venta.idproducto] = 0;
-    }
-        vtaxprod[venta.idproducto] += venta.cantidad;
-})
-//console.log(vtaxprod);
-//------------------ nuevo objeto con producto completo + cant. vendida
 
-let ventaProducto = productos.map(prod => {
-    return {
-        ...prod,
-        cantVent: vtaxprod[prod.id] || 0
-    };
-
-    }
-    )
-console.log(ventaProducto);
-
-//---------------------------reduce---monto por categoria-------------------
-let vtaxcat = ventaProducto.reduce((acumulador, venta) => {
+//--------------reduce para contar cantventa por producto -----------
+let reVentas = ventas.reduce((acumulador, venta) => {
     
-    if (!acumulador[venta.categoria]) {
-        acumulador[venta.categoria] = 0;
+    if (acumulador[venta.idproducto]) {
+        acumulador[venta.idproducto] += venta.cantidad;
+    } else {
+        acumulador[venta.idproducto] = venta.cantidad;
     }
-    acumulador[venta.categoria] += venta.cantVent * venta.precio;
-    
     return acumulador;
 }, {});
-console.log(vtaxcat);
+//console.log(reVentas);
+// { '1': 46, '2': 2, '3': 32, '4': 2, '5': 2, '8': 3, '10': 25 }
+
+//---------------------map - entre prducto y venta --------------
+
+let ventxprod = productos.map(function(prod) {
+    if (reVentas[prod.id] || 0){
+    return {
+        ...prod, vendidos:reVentas[prod.id]
+    }}
+})
+//console.log(ventxprod);
+//------------------ordernar ------------------------
+
+let ventOrdenas = ventxprod.sort((a, b) => a.vendidos - b.vendidos);
+let invorden = (ventOrdenas.reverse());
+console.log(invorden);
+// EL EJERCIO NO LO PUDE COMPLETAR YA QUE AL REALIZAR LOS METODOS ME APARECEN UNOS COMO "UNDEFINED" LO QUE NO ME PERMITE SOLO MOSTRAR LOS 3 PRIMEROS, PERO SI ESTAN ORDENADOS DESCENDENTEMENTE
+
+//------------------------ ITEM 3 -----------------------------------
+

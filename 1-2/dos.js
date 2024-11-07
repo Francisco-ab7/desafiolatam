@@ -22,9 +22,7 @@ let productos = [
     {"id":"9", "nombre":"shampoo", "precio":200000, "categoria":"Limpieza","stock":20},
     {"id":"10", "nombre":"leche", "precio":110000, "categoria":"Lacteos","stock":100}
 ];
-
-
-// reduce
+//-------------------- reduce
 
 let reVentas = ventas.reduce((acumulador, venta) => {
     
