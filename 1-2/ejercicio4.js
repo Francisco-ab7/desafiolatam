@@ -36,7 +36,6 @@ let clientes = [
 ]
 // ------------------------ejercicio 5------------------------
 
-
 //-------------------se crea array de venta con valor total ---------------------------------
 
 let ventval = ventas.map((venvalor, index)=> { 
@@ -69,9 +68,18 @@ let filcli = transCli.filter(valor => valor[1] >= 1000000)
 let orden = filcli.sort(function (a, b) {
     return a[1] > b[1];
   });
-console.log(orden);
+//console.log(orden);
 
 //---------------------resultado--------------------
-//let clientesVip = orden.map((a)=> {
+let clientesVip = orden.map((a)=> {
+    let b = a[0];
+    //console.log(b);
+    return {
+        ...clientes[b],
+        TCompras: a[1]
+    }
+})
 
-//})
+console.log(clientesVip);
+
+//---------------ok ------------------

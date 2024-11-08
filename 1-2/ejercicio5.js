@@ -49,8 +49,10 @@ let reportinv = productos.map((stockprod)=> {
             Nombre:stockprod.nombre,
             Categoria:stockprod.categoria,
             Stock:stockprod.stock,
-            Status:msn,
+            Status:msn
          }
         
 })
 console.log(reportinv);
+
+// -----------------ok--------------------

@@ -9,7 +9,7 @@ let productos = [
     {"id":8, "nombre":"pasta dental", "precio":1500, "categoria":"Limpieza","stock":40},
     {"id":9, "nombre":"shampoo", "precio":2000, "categoria":"Limpieza","stock":20},
     {"id":10, "nombre":"leche", "precio":1100, "categoria":"Lacteos","stock":100}
-] 
+] ;
 
 let ventas = [
     {"idventa":1,"idproducto":1,"cantidad":10, "fecha":"02-01-2024","idcliente":10},
@@ -20,9 +20,9 @@ let ventas = [
     {"idventa":6,"idproducto":4,"cantidad":2, "fecha":"04-01-2024","idcliente":1},
     {"idventa":7,"idproducto":5,"cantidad":1, "fecha":"05-01-2024","idcliente":9},
     {"idventa":8,"idproducto":5,"cantidad":1, "fecha":"05-01-2024","idcliente":2},
-    {"idventa":9,"idproducto":10,"cantidad":10, "fecha":"06-01-2024","idcliente":8},
+    {"idventa":9,"idproducto":10,"cantidad":6, "fecha":"06-01-2024","idcliente":8},
     {"idventa":10,"idproducto":8,"cantidad":3, "fecha":"06-01-2024","idcliente":2}
-]
+];
 
 let clientes = [
     {"idcliente":1,"nombreCliente":"Juan", "email":"juan@gmail.com"},
@@ -35,7 +35,7 @@ let clientes = [
     {"idcliente":8,"nombreCliente":"alicia", "email":"alicia@gmail.com"},
     {"idcliente":9,"nombreCliente":"veronica", "email":"veronica@gmail.com"},
     {"idcliente":10,"nombreCliente":"cecilia", "email":"cecilia@gmail.com"}
-]
+];
 //-------------------crea objeto de cant. venta x id producto ------------
 let vtaxprod = {};
 ventas.forEach(venta => {
@@ -68,3 +68,5 @@ let vtaxcat = ventaProducto.reduce((acumulador, venta) => {
     return acumulador;
 }, {});
 console.log(vtaxcat);
+
+//---------------------ok--------------------------

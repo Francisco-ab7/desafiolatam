@@ -10,20 +10,20 @@ let productos = [
     {"id":8, "nombre":"pasta dental", "precio":1500, "categoria":"Limpieza","stock":40},
     {"id":9, "nombre":"shampoo", "precio":2000, "categoria":"Limpieza","stock":20},
     {"id":10, "nombre":"leche", "precio":1100, "categoria":"Lacteos","stock":100}
-] 
+];
 
 let ventas = [
     {"idventa":1,"idproducto":1,"cantidad":10, "fecha":"02-01-2024","idcliente":10},
     {"idventa":2,"idproducto":2,"cantidad":2, "fecha":"02-01-2024","idcliente":7},
     {"idventa":3,"idproducto":1,"cantidad":16, "fecha":"03-01-2024","idcliente":5},
     {"idventa":4,"idproducto":3,"cantidad":32, "fecha":"03-01-2024","idcliente":7},
-    {"idventa":5,"idproducto":1,"cantidad":4, "fecha":"03-01-2024","idcliente":10},
+    {"idventa":5,"idproducto":1,"cantidad":14, "fecha":"03-01-2024","idcliente":10},
     {"idventa":6,"idproducto":4,"cantidad":2, "fecha":"04-01-2024","idcliente":1},
     {"idventa":7,"idproducto":5,"cantidad":1, "fecha":"05-01-2024","idcliente":9},
     {"idventa":8,"idproducto":5,"cantidad":1, "fecha":"05-01-2024","idcliente":2},
-    {"idventa":9,"idproducto":10,"cantidad":6, "fecha":"06-01-2024","idcliente":8},
+    {"idventa":9,"idproducto":10,"cantidad":15, "fecha":"06-01-2024","idcliente":8},
     {"idventa":10,"idproducto":8,"cantidad":3, "fecha":"06-01-2024","idcliente":2}
-]
+];
 
 let clientes = [
     {"idcliente":1,"nombreCliente":"Juan", "email":"juan@gmail.com"},
@@ -36,7 +36,7 @@ let clientes = [
     {"idcliente":8,"nombreCliente":"alicia", "email":"alicia@gmail.com"},
     {"idcliente":9,"nombreCliente":"veronica", "email":"veronica@gmail.com"},
     {"idcliente":10,"nombreCliente":"cecilia", "email":"cecilia@gmail.com"}
-]
+];
 
 //--------------reduce para contar cantventa por producto -----------
 let reVentas = ventas.reduce((acumulador, venta) => {
@@ -49,23 +49,22 @@ let reVentas = ventas.reduce((acumulador, venta) => {
     return acumulador;
 }, {});
 //console.log(reVentas);
-// { '1': 46, '2': 2, '3': 32, '4': 2, '5': 2, '8': 3, '10': 25 }
+let trafreVentas = Object.entries(reVentas);
+//console.log(trafreVentas);
 
 //---------------------map - entre prducto y venta --------------
 
-let ventxprod = productos.map(function(prod) {
-    if (reVentas[prod.id] || 0){
+let ventxprod = trafreVentas.map((pdto)=> {
+    let n = pdto[0];
     return {
-        ...prod, vendidos:reVentas[prod.id]
-    }}
+        ...productos[n-1], vendidos:pdto[1]
+    }
 })
 //console.log(ventxprod);
 //------------------ordernar ------------------------
-
 let ventOrdenas = ventxprod.sort((a, b) => a.vendidos - b.vendidos);
 let invorden = (ventOrdenas.reverse());
-console.log(invorden);
-// EL EJERCIO NO LO PUDE COMPLETAR YA QUE AL REALIZAR LOS METODOS ME APARECEN UNOS COMO "UNDEFINED" LO QUE NO ME PERMITE SOLO MOSTRAR LOS 3 PRIMEROS, PERO SI ESTAN ORDENADOS DESCENDENTEMENTE
+let losTresmasv = invorden.slice(0,3);
+console.log(losTresmasv);
 
-//------------------------ ITEM 3 -----------------------------------
 
