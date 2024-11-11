@@ -34,7 +34,7 @@ let clientes = [
     {"idcliente":9,"nombreCliente":"veronica", "email":"veronica@gmail.com"},
     {"idcliente":10,"nombreCliente":"cecilia", "email":"cecilia@gmail.com"}
 ]
-// ------------------------ejercicio 5------------------------
+
 
 //-------------------se crea array de venta con valor total ---------------------------------
 

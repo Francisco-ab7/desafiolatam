@@ -61,10 +61,10 @@ let ventxprod = trafreVentas.map((pdto)=> {
     }
 })
 //console.log(ventxprod);
-//------------------ordernar ------------------------
+//------------------ordernar - mostrar ------------------------
 let ventOrdenas = ventxprod.sort((a, b) => a.vendidos - b.vendidos);
 let invorden = (ventOrdenas.reverse());
 let losTresmasv = invorden.slice(0,3);
 console.log(losTresmasv);
 
-
+//----------------------ok---------------------
