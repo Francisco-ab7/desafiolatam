@@ -4,38 +4,27 @@
 //- Implementaunafunción que permita añadir nuevas tareas a un proyecto.
 //- Desarrolla una función que utilice métodos de array (map, filter, reduce) para generar un resumen del proyecto mostrando el número de tareas en cada estado.
 //- Crea una función que ordene las tareas de un proyecto por fecha límite utilizando el método sort de JavaScript.
-//  
+//
 
 let projects = [
-    {"id":1,"name":"Pintar casa","startDay":"01-01-24","tasks":{"id":2,"description":"ir a comprar","status":"Pendiente","deadline":"30-12-24"}}
+    {"id":1,"name":"Pintar casa","startDay":"01-01-24","tasks":{"id":1,"description":"limpiar","status":"Pendiente","deadline":"30-12-24"}}
 ]
-//function Projects(){
-// const Projects = {
-    
-//     addproject(id,name,startDay,tasks) {
-//     projects.push({id,name,startDay,tasks});
-
-//     },
-
-// }
-
-// Projects.addproject(2,"hacer mueble","12-11-24",[2,"ir a comprar 2","Pendiente"])
-
-// console.log(projects);
 function addProject(id,name,startDay,tasks){
     projects.push({id,name,startDay,tasks});
-    return "agregado"
+    return 
 }
-addProject(2,"Hacer Mueble","01-01-24",{"id":12,"description":"ir a comprar 2","status":"Pendiente"});
+
+function addTaskToProject(projectId,id,description,status,deadline){
+    for(i=0;i=projects.length;i++){
+    if (projects[i] === projectId) {
+        projects.tasks.push({id,description,status,deadline});
+        console.log(`Tarea agregada al proyecto:`);     
+    }
+    else {console.log(`Proyecto no encontrado`); }
+
+}}
+addProject(2,"hacer mueble","01-01-24",{"id":2,"description":"medir","status":"Pendiente","deadline":"30-12-24"});
+
+// Llamada a la función para agregar la tarea al proyecto con ID 1
+addTaskToProject(1,2,"Pintar la pared","Pendiente","15-01-24");
 console.log(projects);
-const task= [];
-function addTasks(id,idProject,description,status,deadline) {
-
-
-}
-
-function searchtask() {
-
-
-    
-}
