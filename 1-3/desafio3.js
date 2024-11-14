@@ -1,46 +1,68 @@
-// Crea una estructura de datos para representar proyectos y tareas.
-//- Cada proyecto debe tener un ID, nombre, fecha de inicio, y un array de tareas.
-//- Cada tarea debe tener un ID, descripción, estado (pendiente, en progreso, completada) y fecha límite.
-//- Implementaunafunción que permita añadir nuevas tareas a un proyecto.
-//- Desarrolla una función que utilice métodos de array (map, filter, reduce) para generar un resumen del proyecto mostrando el número de tareas en cada estado.
-//- Crea una función que ordene las tareas de un proyecto por fecha límite utilizando el método sort de JavaScript.
-//
 //----------------------item 1-------------------------------
 //--------parte 1---------------
-let projects = [
-    {"id":1,"name":"Pintar casa","startDay":"01-01-24","tasks":[{"id":1,"description":"limpiar","status":"Pendiente","deadline":"30-12-24"}]},
-    {"id":2,"name":"Cambio de piso","startDay":"01-03-24","tasks":[{"id":1,"description":"tomar medidas comedor & Living","status":"Pendiente","deadline":"25-12-24"}]},
-    {"id":3,"name":"Arreglar Baño","startDay":"01-07-24","tasks":[{"id":1,"description":"remover accesorios","status":"Pendiente","deadline":"20-12-24"}]}
-]
+//Crea una estructura de datos para representar proyectos y tareas
+
+//YY-MM-DD
+const projects = [
+    {"id":1,"name":"Pintar casa","startDay":"2024-01-01","tasks":[{"id":1,"description":"limpiar","status":"Pendiente","deadline":"2024-12-01"},{"id":2,"description":"limpiar otra vez","status":"Pendiente","deadline":"2024-12-25"}]},
+    {"id":2,"name":"Cambio de piso","startDay":"2024-02-15","tasks":[{"id":1,"description":"tomar medidas comedor & Living","status":"Pendiente","deadline":"2024-10-22"}]},
+    {"id":3,"name":"Arreglar Baño","startDay":"2024-03-20","tasks":[{"id":1,"description":"remover accesorios","status":"Pendiente","deadline":"2024-11-25"},{"id":2,"description":"retirar ceramicass","status":"Pendiente","deadline":"2024-12-10"}]}
+  ]
+  
 function addProject(id,name,startDay,tasks){
     projects.push({id,name,startDay,tasks});
     return 
 }
 
 //------------parte 2 -------------
+//Implementaunafunción que permita añadir nuevas tareas a un proyecto.
 
-let newTask = {"id": 2,"description": "pintar paredes","status": "Pendiente","deadline": "15-01-24"};
+const newTask = {"id": 2,"description": "pintar paredes","status": "Pendiente","deadline":"2024-10-25"};
   
 function addTask (projectID, newTask){
 let project = projects.find(p => p.id === projectID);
 if (project) {
   project.tasks.push(newTask); 
 }}
+
 addTask(1,newTask);
 //console.log(...projects); 
 
 //-----------parte 3 ---------------------
+//Desarrolla una función que utilice métodos de array (map, filter, reduce) para generar un resumen del proyecto mostrando el número de tareas en cada estado.
 
 
 resumenProject = projects.map((project)=>{
     
-    return {
-        
+    return {        
         ID: project.id,
         Projecto: project.name, 
-
+        //a:project.tasks[1].deadline[1]
     }
 })
-console.log(...resumenProject)
+//console.log(resumenProject)
 
 //-------------------item 4 -------------------
+// Crea una función que ordene las tareas de un proyecto por fecha límite utilizando el método sort de JavaScript
+
+function orderTask(idProject){ 
+    const project = projects.find(p => p.id === idProject);
+    //console.log(project);
+    
+      if (project) {
+          const sortedTasks = project.tasks.sort((a, b) => {
+              return new Date(a.deadline) - new Date(b.deadline);
+            });
+        //console.log(sortedTasks);
+          const result = sortedTasks.map(task => ({
+                description: task.description,
+                deadline: task.deadline
+            }));
+    
+        console.log(result);
+    } else {
+        console.log('Proyecto no encontrado');
+    }
+    }
+// De lo que entiendo, se solicita mostrar las tareas de UN SOLO proyecto, de formar que muestra la fecha de termino mas reciente a la mas lejana. donde uno selecciona el ID del proyecto
+orderTask(3);

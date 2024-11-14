@@ -32,13 +32,30 @@
 // //   addTask(1,newTask);
 // //   console.log(...projects); 
 
-a = '31-01-24'
+const projects = [
+  {"id":1,"name":"Pintar casa","startDay":"2024-01-01","tasks":[{"id":1,"description":"limpiar","status":"Pendiente","deadline":"2024-12-01"},{"id":2,"description":"limpiar otra vez","status":"Pendiente","deadline":"2024-12-25"}]},
+  {"id":2,"name":"Cambio de piso","startDay":"2024-02-15","tasks":[{"id":1,"description":"tomar medidas comedor & Living","status":"Pendiente","deadline":"2024-10-22"}]},
+  {"id":3,"name":"Arreglar Baño","startDay":"2024-03-20","tasks":[{"id":1,"description":"remover accesorios","status":"Pendiente","deadline":"2024-11-01"},{"id":2,"description":"retirar ceramicass","status":"Pendiente","deadline":"2024-11-01"}]}
+]
 
-let partes = fechaStr.split("-");
+function orderTask(idProject){ 
+const project = projects.find(p => p.id === idProject);
+//console.log(project);
 
-// Formateamos la fecha a 'YYYY-MM-DD' para que el constructor Date la entienda correctamente
-let fecha = new Date("20" + partes[2], partes[0] - 1, partes[1]);
+  if (project) {
+      const sortedTasks = project.tasks.sort((a, b) => {
+          return new Date(a.deadline) - new Date(b.deadline);
+        });
+        console.log(sortedTasks);
+      const result = sortedTasks.map(task => ({
+          description: task.description,
+         deadline: task.deadline
+        }));
 
-console.log(fecha);  // Output: Wed Jan 31 2024 00:00:00 GMT+0000 (UTC)
+    console.log(result);
+} else {
+    console.log('Proyecto no encontrado');
+}
+}
 
-//mes/dias/año
+orderTask(1);
