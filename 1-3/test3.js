@@ -1,2 +1,22 @@
-let pedido = {"token":"151484-_-oma_2b509b9f-2d09-5138-88d9-60a0efc16a67-_-us-cl","code":"1339926190","preOrder":false,"expiryDate":"2024-11-14T17:43:50.805Z","createdAt":"2024-11-14T17:32:14.655Z","localInfo":{"platform":"PEDIDOS_YA","platformKey":"PY","countryCode":"CL","currencySymbol":"$","currencySymbolPosition":"","currencySymbolSpaces":"","decimalSeparator":".","decimalDigits":"","thousandsSeparator":"","website":"","email":"","phone":""},"platformRestaurant":{"id":"116010"},"customer":{"firstName":"camilo","lastName":"pino","mobilePhone":"+56984734734","email":"","flags":[],"id":"40832637","code":"40832637","mobilePhoneCountryCode":""},"payment":{"type":"Pago online","status":"paid","remoteCode":"Pago online","requiredMoneyChange":"","vatName":"","vatId":""},"expeditionType":"delivery","products":[{"id":"131806780","remoteCode":"6708","name":"Promo Pizza Mediana + Papas Supremas Doble","comment":"","variation":{"name":"Promo Pizza Mediana + Papas Supremas Doble"},"unitPrice":"17640","paidPrice":"17640","quantity":"1","selectedToppings":[{"id":"118818128","remoteCode":"1326","name":"Elige tu Pizza Mediana a elección: Italiana Mediana","quantity":1,"children":[],"price":"0","type":"EXTRA","discounts":[]}],"discounts":[],"description":"","discountAmount":"","halfHalf":false,"vatPercentage":"","selectedChoices":[]},{"id":"24661205","remoteCode":"50","name":"Bebida Lata 350 cc","comment":"","variation":{"name":"Bebida Lata 350 cc"},"unitPrice":"3050","paidPrice":"3050","quantity":"1","selectedToppings":[{"id":"149032696","remoteCode":"7284","name":"Elige tu bebida de 350 cc: Bilz 350 cc","quantity":1,"children":[],"price":"0","type":"EXTRA","discounts":[]}],"discounts":[],"description":"","discountAmount":"","halfHalf":false,"vatPercentage":"","selectedChoices":[]}],"comments":{"customerComment":"Medio de pago: MASTERCARD","vendorComment":""},"discounts":[{"name":"Descuento por promoción | Vendor","amount":"7650","sponsorships":[],"type":"Descuento por promoción | Vendor"}],"price":{"minimumDeliveryValue":"","comission":"","deliveryFee":"0","deliveryFees":[],"containerCharge":"","deliveryFeeDiscount":"","serviceFeePercent":"","serviceFeeTotal":"","serviceTax":0,"serviceTaxValue":0,"subTotal":"20690","totalNet":"20690","vatVisible":true,"vatPercent":"0","vatTotal":"0","grandTotal":"13040","discountAmountTotal":"7650","differenceToMinimumDeliveryValue":"","payRestaurant":"0","collectFromCustomer":"","riderTip":"0"},"delivery":{"expressDelivery":false,"expectedDeliveryTime":"2024-11-14T18:16:51.000Z","riderPickupTime":"2024-11-14T17:51:50.536Z"},"shortCode":"2678","test":false,"extraParameters":{"payment_method":"Pago Online","payment_flag":"MASTERCARD","payment_type":"DEBIT"},"corporateTaxId":"","callbackUrls":{"orderAcceptedUrl":"https://vendor-api-cl.us.restaurant-partners.com/api/1/pos/orders/151484-_-oma_2b509b9f-2d09-5138-88d9-60a0efc16a67-_-us-cl/status","orderRejectedUrl":"https://vendor-api-cl.us.restaurant-partners.com/api/1/pos/orders/151484-_-oma_2b509b9f-2d09-5138-88d9-60a0efc16a67-_-us-cl/status","orderPreparedUrl":"https://vendor-api-cl.us.restaurant-partners.com/api/1/pos/orders/151484-_-oma_2b509b9f-2d09-5138-88d9-60a0efc16a67-_-us-cl/preparation-completed"},"vouchers":[],"webOrder":false,"mobileOrder":true,"corporateOrder":false,"integrationInfo":{}}
-console.log(pedido);
+const projects = [
+    {"id":1,"name":"Pintar casa","startDay":"2024-01-01","tasks":[{"id":1,"description":"limpiar","status":"Pendiente","deadline":"2024-12-01"},{"id":2,"description":"limpiar otra vez","status":"Pendiente","deadline":"2024-12-25"}]},
+    {"id":2,"name":"Cambio de piso","startDay":"2024-02-15","tasks":[{"id":1,"description":"tomar medidas comedor & Living","status":"Pendiente","deadline":"2024-10-22"}]},
+    {"id":3,"name":"Arreglar Baño","startDay":"2024-03-20","tasks":[{"id":1,"description":"remover accesorios","status":"Pendiente","deadline":"2024-11-25"},{"id":2,"description":"retirar ceramicass","status":"Pendiente","deadline":"2024-12-10"}]}
+  ]
+// function remainingtime(projectID) {
+    const project = projects.find(p => p.id === 3);
+     if(project){
+        let convProject = Object.entries(project);
+        let proj = convProject.map((task)=>{
+            let eachtask = task.map((tfin)=>{
+                return {tfin:task.deadline}
+            })
+            return eachtask
+        })
+        return proj
+    }
+console.log(project)
+
+
+// }
+// remainingtime(3)
