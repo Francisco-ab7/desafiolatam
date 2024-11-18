@@ -3,20 +3,14 @@ const projects = [
     {"id":2,"name":"Cambio de piso","startDay":"2024-02-15","tasks":[{"id":1,"description":"tomar medidas comedor & Living","status":"Pendiente","deadline":"2024-10-22"}]},
     {"id":3,"name":"Arreglar Baño","startDay":"2024-03-20","tasks":[{"id":1,"description":"remover accesorios","status":"Pendiente","deadline":"2024-11-25"},{"id":2,"description":"retirar ceramicass","status":"Pendiente","deadline":"2024-12-10"}]}
   ]
-// function remainingtime(projectID) {
-    const project = projects.find(p => p.id === 3);
-     if(project){
-        let convProject = Object.entries(project);
-        let proj = convProject.map((task)=>{
-            let eachtask = task.map((tfin)=>{
-                return {tfin:task.deadline}
-            })
-            return eachtask
-        })
-        return proj
-    }
-console.log(project)
+//Implementaunafunción que permita añadir nuevas tareas a un proyecto.
+  
+function addTask (projectID, newTask){
+let project = projects.find(p => p.id === projectID);
+if (project) {
+  project.tasks.push(newTask);
+  console.log("Tarea Agregada al Proyecto " + project.id) 
+}}
 
-
-// }
-// remainingtime(3)
+const newTask = {"id": 2,"description": "pintar paredes","status": "Pendiente","deadline":"2024-10-25"};
+addTask(2,newTask);
