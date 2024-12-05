@@ -1,0 +1,105 @@
+-- Database: testdb
+
+-- DROP DATABASE IF EXISTS testdb;
+
+CREATE DATABASE testdb
+    WITH
+    OWNER = sa
+    ENCODING = 'UTF8'
+    LC_COLLATE = 'en_US.utf8'
+    LC_CTYPE = 'en_US.utf8'
+    LOCALE_PROVIDER = 'libc'
+    TABLESPACE = pg_default
+    CONNECTION LIMIT = -1
+    IS_TEMPLATE = False;
+
+
+
+
+
+-- Table: public.users
+
+-- DROP TABLE IF EXISTS public.users;
+
+CREATE TABLE IF NOT EXISTS public.users
+(
+    id integer NOT NULL DEFAULT nextval('users_id_seq'::regclass),
+    name character varying(50) COLLATE pg_catalog."default" NOT NULL,
+    login character varying(50) COLLATE pg_catalog."default" NOT NULL,
+    password character varying(50) COLLATE pg_catalog."default" NOT NULL,
+    email character varying(50) COLLATE pg_catalog."default" NOT NULL,
+    CONSTRAINT users_pkey PRIMARY KEY (id)
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.users
+    OWNER to sa;
+
+
+-- Table: public.sales
+
+-- DROP TABLE IF EXISTS public.sales;
+
+CREATE TABLE IF NOT EXISTS public.sales
+(
+    id integer NOT NULL DEFAULT nextval('sales_id_seq'::regclass),
+    date timestamp without time zone NOT NULL,
+    paymentopcionid integer NOT NULL,
+    total integer NOT NULL,
+    ticketid integer NOT NULL,
+    CONSTRAINT sales_pkey PRIMARY KEY (id)
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.sales
+    OWNER to sa;
+
+
+-- Table: public.products
+
+-- DROP TABLE IF EXISTS public.products;
+
+CREATE TABLE IF NOT EXISTS public.products
+(
+    id character varying(10)[] COLLATE pg_catalog."default" NOT NULL,
+    name character varying(100)[] COLLATE pg_catalog."default" NOT NULL,
+    brand character varying(50)[] COLLATE pg_catalog."default" NOT NULL,
+    category character varying(50)[] COLLATE pg_catalog."default" NOT NULL,
+    price integer NOT NULL,
+    stock integer NOT NULL,
+    description character varying(150)[] COLLATE pg_catalog."default",
+    CONSTRAINT products_pkey PRIMARY KEY (id)
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.products
+    OWNER to sa;
+
+-- Table: public.clients
+
+-- DROP TABLE IF EXISTS public.clients;
+
+CREATE TABLE IF NOT EXISTS public.clients
+(
+    id integer NOT NULL DEFAULT nextval('clients_id_seq'::regclass),
+    name character varying(50)[] COLLATE pg_catalog."default" NOT NULL,
+    "lastName" character varying(50)[] COLLATE pg_catalog."default" NOT NULL,
+    phone character varying(50)[] COLLATE pg_catalog."default",
+    email character varying(150)[] COLLATE pg_catalog."default",
+    CONSTRAINT clients_pkey PRIMARY KEY (id)
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.clients
+    OWNER to sa;
+
+
+
+
+
+
+
