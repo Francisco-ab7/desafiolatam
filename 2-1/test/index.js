@@ -2,6 +2,9 @@ const express = require('express')
 const pool = require('./dbConexion')
 const dbQuerys = require('./dbQuerys')
 const jwt = require('jsonwebtoken');
+const swaggerJsdoc = require('swagger-jsdoc')
+const swaggerUi = require('swagger-ui-express')
+
 const PORT = 3000
 const app = express()
 app.listen(PORT,()=> { console.log('Running Server on port ',PORT, ' !!!')})
@@ -11,8 +14,20 @@ if(pool){
 }
 else { console.log('Error de conexion a la DB !!!')}
 
+//------------------SWAGGER-----------------------------------------
+const options = {
+    definition: {
+        openapi: '3.0.0',
+        info: {
+            title:'Api Users',
+            version: '1.0.0',
+            description: 'Api Documents'
+        }
+    },
+    apis: ['./*.js']
+}
 
-//--------------RUTAS-------------------------------------------------------
+//------------------RUTAS-------------------------------------------
 //CONSULTAR
 app.get('/users',async (req,res)=> {
     try {
