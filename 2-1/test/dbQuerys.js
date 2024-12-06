@@ -26,4 +26,12 @@ const updateUser = async (id,name) => {
     console.log ('Usuario actualizado !!!');   
 };
 
-module.exports = { getUsers, addUser,delUser,updateUser}
+const findUser = async (login,password) => {
+    const finduser = 'SELECT * FROM users WHERE login = $1 AND password = $2'
+    const data = [login, password]
+    const result = await pool.query(finduser,data);
+    return result 
+};
+
+module.exports = { getUsers, addUser,delUser,updateUser,findUser}
+
