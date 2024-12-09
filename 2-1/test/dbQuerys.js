@@ -1,7 +1,8 @@
 const pool = require('./dbConexion')
 
+
 const getUsers = async () => {
-    const {rows} = await pool.query('SELECT * FROM users');
+    const {rows} = await pool.query('SELECT id,name,email FROM users');
     return rows;
 };
 
