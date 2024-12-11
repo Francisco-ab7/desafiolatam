@@ -9,16 +9,29 @@ const app = require('../index.js');
 
 
 //------------------RUTAS-------------------------------------------
+
 //CONSULTAR
- /**
+/** GET Methods */
+/**
  * @openapi
  * /users:
  *  get:
- *   description: Welcome to swagger-jsdoc!
- *   responses:
- *    '200':
- *      description: Returns all users.
+ *     tags:
+ *     - User Controller
+ *     summary: Get all users
+ *     responses:
+ *      200:
+ *        description: Fetched Successfully
+ *      400:
+ *        description: Bad Request
+ *      404:
+ *        description: Not Found
+ *      500:
+ *        description: Server Error
+ *      401:
+ *        description: Unauthorized
  */
+
 router.get('/users',async (req,res)=> {
     try {
         const usersdb = await dbQuerys.getUsers()
@@ -28,7 +41,54 @@ router.get('/users',async (req,res)=> {
         console.log('Error al obtener los datos')
     };
 })
+
 //AGREGAR
+/** POST Methods */
+/**
+ * @openapi
+ * /users:
+ *  post:
+ *     tags:
+ *     - User Controller
+ *     summary: Create a user
+ *     requestBody:
+ *      required: true
+ *      content:
+ *        application/json:
+ *           schema:
+ *            type: object
+ *            required:
+ *              - name
+ *              - login
+ *              - password
+ *              - email
+ *            properties:
+ *              username:
+ *                type: string
+ *                default: user1 
+ *              login:
+ *                type: string
+ *                default: user1
+ *              password:
+ *                type: string
+ *                default: 1234
+ *              email:
+ *                type: string
+ *                default: user1@test.com
+ *     responses:
+ *      201:
+ *        description: Created
+ *      409:
+ *        description: Conflict
+ *      404:
+ *        description: Not Found
+ *      500:
+ *        description: Server Error
+ *      401:
+ *        description: Unauthorized
+ */
+
+
 router.post('/users',authenticateToken, async (req,res)=> {
     try {
         const {name,login,password,email} = req.body;
