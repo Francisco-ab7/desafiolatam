@@ -101,6 +101,53 @@ router.post('/users',authenticateToken, async (req,res)=> {
     res.send('Usuario agregado con exito !!!')
 })
 //BORRAR
+
+/** POST Methods */
+/**
+ * @openapi
+ * /users:
+ *  delete:
+ *     tags:
+ *     - User Controller
+ *     summary: Delete a user
+ *     requestBody:
+ *      required: true
+ *      content:
+ *        application/json:
+ *           schema:
+ *            type: object
+ *            required:
+ *              - name
+ *              - login
+ *              - password
+ *              - email
+ *            properties:
+ *              username:
+ *                type: string
+ *                default: user1 
+ *              login:
+ *                type: string
+ *                default: user1
+ *              password:
+ *                type: string
+ *                default: 1234
+ *              email:
+ *                type: string
+ *                default: user1@test.com
+ *     responses:
+ *      201:
+ *        description: Created
+ *      409:
+ *        description: Conflict
+ *      404:
+ *        description: Not Found
+ *      500:
+ *        description: Server Error
+ *      401:
+ *        description: Unauthorized
+ */
+
+
 router.delete('/users/:id',authenticateToken, async (req,res)=> {
     const { id } = req.params;
     try {
