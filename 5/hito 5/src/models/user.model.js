@@ -26,7 +26,10 @@ const Users = sequelize.define("Users", {
 });
 
 Users.beforeCreate(async (user) => {
-  user.password = await bcrypt.hash(user.password, 8);
+  user.password = await bcrypt.hash(user.password, 8); });
+
+Users.beforeUpdate(async (user) => {
+    user.password = await bcrypt.hash(user.password, 8);
 });
 
 module.exports = Users

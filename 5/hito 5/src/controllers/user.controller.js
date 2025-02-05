@@ -55,10 +55,9 @@ const updateuser = async (req,res) => {
   const { password, email } = req.body;
   const upduser = await Users.findOne({ 
     where: { name: name} });
-    if(!name){
-      res.status(404).json({message:"Usuario no encontrado"})
-    }
-    await Users.update({ password: upduser.password} || {email: upduser.email });
+    if (password) upduser.password = password;
+    if (email) upduser.email = email;
+    await upduser.save()
     return upduser;
   }
 
