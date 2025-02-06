@@ -47,7 +47,6 @@ const delusers= async (req,res) => {
   }
   await user.destroy();
   return user;
-//  return res.status(200).json({message:"Usuario Eliminado",dato: user.name})
 }
 
 const updateuser = async (req,res) => {
