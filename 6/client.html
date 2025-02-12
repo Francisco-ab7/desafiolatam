@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Socket.IO Client</title>
+  <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+</head>
+
+<body>
+  <h2>Socket.IO Client</h2>
+  <input type="text" id="message" placeholder="Type a message...">
+  <button onclick="sendMessage()">Send</button>
+  <ul id="messages"></ul>
+
+  <script>
+    const socket = io('https://5528-181-160-216-39.ngrok-free.app'); // Change to your server URL if needed
+
+    socket.on('connect', () => {
+      console.log('Connected to server');
+    });
+
+    socket.on('chat', (msg) => {
+      const li = document.createElement('li');
+      li.textContent = msg;
+      document.getElementById('messages').appendChild(li);
+    });
+
+    function sendMessage() {
+      const input = document.getElementById('message');
+      const message = input.value;
+      socket.emit('chat', message);
+      input.value = '';
+    }
+  </script>
+</body>
+
+</html>
