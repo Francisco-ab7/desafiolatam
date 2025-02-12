@@ -2,77 +2,35 @@ const express = require('express');
 const cookieParser = require('cookie-parser');
 const morgan = require('morgan');
 const app = express();
-// Configuración e inicio del servidor
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
 console.log(`Servidor ejecutándose en el puerto ${PORT}`);
 });
-/**
-* Configuración de Middleware
-* Establece la cadena de procesamiento de solicitudes
-*/
-// Habilita el parseado de JSON en el cuerpo de las peticiones
-app.use(express.json());
-// Configura el procesamiento de cookies
-app.use(cookieParser());
-// Configura el logging de solicitudes HTTP
-app.use(morgan('dev'));
-/**
 
-* Middleware de nivel de aplicación
-* Se ejecuta en cada solicitud que llega al servidor
-*
-* @param {Object} req - Objeto de solicitud
-* @param {Object} res - Objeto de respuesta
-* @param {Function} next - Función para pasar al siguiente middleware
-*/
+app.use(express.json());
+app.use(cookieParser());
+app.use(morgan('dev'));
+
 app.use((req, res, next) => {
     console.log('Middleware de nivel de aplicación ejecutado.');
     next();
     });
 
-/**
-* Middleware global de manejo de errores
-* Captura y procesa errores no manejados
-*
-* @param {Error} err - Objeto de error
-* @param {Object} req - Objeto de solicitud
-* @param {Object} res - Objeto de respuesta
-* @param {Function} next - Función para pasar al siguiente middleware
-*/
 app.use((err, req, res, next) => {
     console.error('Error:', err.message);
     res.status(500).send('Error del servidor.');
     });
 
-/**
-* Configuración del Router
-* Define rutas específicas y su middleware asociado
-*/
 const router = express.Router();
 
-/**
-* Middleware de nivel de router
-* Se ejecuta solo para las rutas definidas en este router
-*/
 router.use((req, res, next) => {
     console.log('Middleware de nivel de direccionador ejecutado.');
     next();
     });
 
-/**
-* Estructuras de datos para el sistema de mensajería
-*/
-const messages = []; // Almacena los mensajes pendientes
-const consumers = []; // Almacena los consumidores registrados
+const messages = []; 
+const consumers = []; 
 
-/**
-* Endpoint para enviar mensajes
-*
-* @route POST /send
-* @param {Object} req.body.message - Mensaje a enviar
-* @returns {Object} Estado del envío
-*/
 app.post('/send', (req, res) => {
     const { message } = req.body;
     if (!message) {
@@ -83,13 +41,6 @@ app.post('/send', (req, res) => {
     res.status(200).json({ status: 'Mensaje enviado exitosamente' });
     });
 
-/**
-* Endpoint para recibir mensajes
-* Implementa patrón FIFO
-*
-* @route GET /receive
-* @returns {Object} Mensaje o respuesta vacía
-*/
 app.get('/receive', (req, res) => {
     if (messages.length > 0) {
     const message = messages.shift();
@@ -99,13 +50,6 @@ app.get('/receive', (req, res) => {
     }
     });
 
-/**
-* Ruteo basado en contenido
-* Maneja diferentes tipos de respuesta según el parámetro type
-*
-* @route GET /api/route
-* @param {string} type - Tipo de respuesta solicitada (text/json)
-*/
 router.get('/route', (req, res) => {
     const { type } = req.query;
     if (type === 'text') {
@@ -117,13 +61,8 @@ router.get('/route', (req, res) => {
     }
     });
     
-// Monta el router en el path /api
 app.use('/api', router);
 
-/**
-* Middleware de manejo de errores personalizado
-* Proporciona un mensaje de error más amigable
-*/
 app.use((err, req, res, next) => {
     console.error(err.stack);
     res.status(500).send('Algo salió mal!');
